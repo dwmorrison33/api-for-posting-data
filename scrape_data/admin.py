@@ -1,3 +1,4 @@
 from django.contrib import admin
+from scraper_api.scrape_data import ScrapeData
 
-# Register your models here.
+admin.site.register(ScrapeData)

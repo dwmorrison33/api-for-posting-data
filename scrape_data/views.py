@@ -26,3 +26,22 @@ def scrape_data(request):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['GET', 'DELETE'])
+def scrape_data_detail(request, pk):
+    """
+    Retrieve, update or delete an instance of scraped data.
+    """
+    try:
+        scraped_data = ScrapeData.objects.get(pk=pk)
+    except ScrapeData.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    if request.method == 'GET':
+        serializer = ScrapeData(scraped_data)
+        return Response(serializer.data)
+
+    elif request.method == 'DELETE':
+        scraped_data.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
