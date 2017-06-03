@@ -1,0 +1,1 @@
+There is no requirements.txt file, but the installs you will need for this api are djangorestframework and django.  This api is usuable on a local machine to scrape data and post to an endpoint, using the postgres database.  
